@@ -14,8 +14,10 @@ export async function POST(req: Request, res: Response) {
   try {
     const body = await req.json();
     const { file_key, file_name } = body;
+    console.log('body', body)
     console.log(file_key, file_name);
     await loadS3IntoPinecone(file_key);
+    console.log('load pinecone success')
     const chat_id = await db
       .insert(chats)
       .values({
